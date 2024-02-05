@@ -6,6 +6,7 @@ import Signup from './pages/Signup'
 import Dashboard from './pages/Dashboard'
 import Projects from './pages/Projects'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
       <Route path="/sign-up" element={<Signup />}/>
       <Route path="/projects" element={<Projects />}/>
     </Routes>
+    <Footer/>
     </BrowserRouter>
   )
 }
