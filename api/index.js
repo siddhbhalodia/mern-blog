@@ -8,6 +8,7 @@ dotenv.config();
 
 mongoose.connect(process.env.MONGO).then(()=>{
     console.log('Mongodb connected')
+    // console.log("Bhalodia Siddh".toLowerCase().split(' ').join('') + Math.random().toString(9).slice(-4))
 }).catch((err)=>{
     console.log(err)
 })
