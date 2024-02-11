@@ -8,7 +8,7 @@ export default function DashSidebar() {
   useEffect(()=>{
     const urlParams=new URLSearchParams(location.search)
     const tabFromUrl=urlParams.get('tab')
-    console.log(tabFromUrl)
+    // console.log(tabFromUrl)
     if(tabFromUrl){
       setTab(tabFromUrl);
     }
@@ -18,7 +18,7 @@ export default function DashSidebar() {
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           <Link to='/dashboard?tab=profile'>
-          <Sidebar.Item active={tab==="profile"} icon={HiUser} label={"User"} labelColor='dark'>
+          <Sidebar.Item active={tab==="profile"} icon={HiUser} label={"User"} labelColor='dark' as='div'>
             Profile
           </Sidebar.Item>
           </Link>
