@@ -19,18 +19,16 @@ export const create = async (req, res, next) => {
 }
 
 export const deletebookmark = async (req, res, next) => {
-    try{
-        const bookmark = await Bookmark.findById(req.params.bookmarkId)
-        if(!bookmark){
-            return next(errorHandler(404,"Bookmark not found"))
+    try {
+        const { userId, postId } = req.params;
+        const bookmark = await Bookmark.findOneAndDelete({ userId, postId });
+        if (!bookmark) {
+            return res.status(404).json({ message: 'Bookmark not found' });
         }
-        if(bookmark.userId !== req.user.id){
-            return next(errorHandler(403,"You are not allowed to delete this bookmark"))
-        }
-        await Bookmark.findByIdAndDelete(req.params.bookmarkId)
-        res.status(200).json("Bookmark has been deleted")
-    }catch(error){
-        next(error)
+        res.json({ message: 'Bookmark deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting bookmark:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 }
 

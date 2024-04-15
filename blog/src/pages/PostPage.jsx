@@ -5,14 +5,15 @@ import { Button, Spinner } from "flowbite-react"
 import CallToAction from "../components/CallToAction"
 import CommentSection from "../components/CommentSection"
 import PostCard from "../components/PostCard"
-
+import BookmarkSection from "../components/BookmarkSection"
+import { useSelector } from 'react-redux'
 export default function PostPage() {
     const {postSlug} = useParams()
     const [loading,setLoading] =useState(true)
     const [error,setError] = useState(false)
     const [post,setPost] = useState(null)
     const [recentPost,setRecentPost] = useState(null)
-
+    const {currentUser}=useSelector(state=>state.user)
     useEffect(()=>{
         const fetchPost = async()=>{
             try{
@@ -64,6 +65,7 @@ export default function PostPage() {
         <Link to={`/search?catagory=${post && post.catagory}`} className='self-center mt-5 '>
             <Button color='gray' pill size='xs'>{post && post.catagory}</Button>
         </Link>
+        <BookmarkSection postId={post._id} userId={currentUser._id}/>
         <img src={post && post.image} alt={post && post.title} className="w-full max-h-[600px] object-cover p-3 mt-10" />
         <div className="flex justify-between p-3 border-b border-slate-300 mx-auto w-full max-w-2xl text-xs">
             <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
