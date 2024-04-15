@@ -65,7 +65,7 @@ export default function PostPage() {
         <Link to={`/search?catagory=${post && post.catagory}`} className='self-center mt-5 '>
             <Button color='gray' pill size='xs'>{post && post.catagory}</Button>
         </Link>
-        <BookmarkSection postId={post._id} userId={currentUser._id}/>
+        {currentUser && <BookmarkSection postId={post._id} userId={currentUser._id}/>}
         <img src={post && post.image} alt={post && post.title} className="w-full max-h-[600px] object-cover p-3 mt-10" />
         <div className="flex justify-between p-3 border-b border-slate-300 mx-auto w-full max-w-2xl text-xs">
             <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>

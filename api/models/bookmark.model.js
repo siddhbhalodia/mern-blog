@@ -7,7 +7,8 @@ const bookmarkSchema = new mongoose.Schema({
     },
     postId: {
         type: String,
-        required: true
+        required: true,
+        ref:"Post"
     }
 },{timestamps: true})
 

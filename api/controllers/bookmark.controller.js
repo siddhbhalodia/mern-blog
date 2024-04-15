@@ -42,3 +42,15 @@ export const getbookmarks = async (req, res, next) => {
         next(error)
     }
 }
+
+export const getBookmarkedPosts= async (req, res, next) => {
+    try{
+        const bookmarks = await Bookmark.find({userId:req.params.userId}).sort({
+            createdAt:-1
+        }).populate("postId")
+        const posts = bookmarks.map(bookmark => bookmark.postId)
+        res.status(200).json(posts)
+    }catch(error){
+        next(error)
+    }
+}

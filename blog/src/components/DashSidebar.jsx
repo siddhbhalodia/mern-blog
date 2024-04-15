@@ -94,6 +94,19 @@ export default function DashSidebar() {
             </Link>
             </>
           )}
+          { 
+            currentUser && (
+              <Link to='/dashboard?tab=bookmark'>
+              <Sidebar.Item 
+              active = {tab==='bookmark' || !tab}
+              icon={HiChartPie} 
+              labelColor='dark' 
+              as='div'>
+                Bookmarks
+              </Sidebar.Item>
+              </Link>
+            )
+          }
           <Sidebar.Item icon={HiArrowSmRight}  className='cursor-pointer' onClick={handleSignout}>
             Sign Out
           </Sidebar.Item>
