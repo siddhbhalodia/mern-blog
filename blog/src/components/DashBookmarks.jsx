@@ -121,7 +121,7 @@ function DashBookmarks() {
         </>
       ) : (
 
-        <p>You have Bookmarks yet</p>
+        <p>You have no bookmarks yet</p>
       )}
 
         <Modal show={showModal} onClose={() => setShowModal(false)} popup size='md'>

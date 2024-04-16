@@ -7,9 +7,9 @@ export default function About() {
         <div className="">
           <h1 className='text-3xl font-semibold text-center my-7'>About Nebula Blog</h1>
           <div className="text-md text-gray-500 flex flex-col gap-6">
-            <p>Nebula blog is a blog that i created to sharer my thoughts and ideas with the world. I am software engineer and i love to write my experiences and things that i have learnt. I hope you enjoy reading my blog.</p>
-            <p>Nebula blog is a blog that i created to sharer my thoughts and ideas with the world. I am software engineer and i love to write my experiences and things that i have learnt. I hope you enjoy reading my blog.</p>
-            <p>Nebula blog is a blog that i created to sharer my thoughts and ideas with the world. I am software engineer and i love to write my experiences and things that i have learnt. I hope you enjoy reading my blog.</p>
+            <p>Nebula Blog is a basic blog website where admin would post on any topic and users can read all the blogs on relevant topic</p>  
+            <p>Admins can access Dashboard where they can see recent users, posts and comments. They can also see complete list of users, posts and comments. They can regulate rules and regulations by maintaing all the posts and comments. If They found any post/comment to be misleading, they can delete it too.</p>
+            <p>Telling about us, We Bhalodia Siddh, Thummar Vatsal and Aditya Galani are the core team. We are currently pursuing our B.Tech from MNNIT Allahabad.</p>
           </div>
         </div>
       </div>

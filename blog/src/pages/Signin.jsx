@@ -47,7 +47,8 @@ export default function SignIn() {
             Blog
         </Link>
         <p className='text-sm mt-5'>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero illo quos dolorum, dolores provident saepe minima dignissimos accusantium perspiciatis ex recusandae nulla corrupti corporis rerum repellat, aspernatur sit. Minus, ab.
+          <p>Sign-in/Sign-up to enjoy all features of bloging.</p> 
+          <p>Where Words Dance and Ideas Take Flight: Explore the Tapestry of Thought!</p>
         </p>
         </div>
         {/* right */}

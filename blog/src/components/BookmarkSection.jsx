@@ -53,9 +53,6 @@ export default function BookmarkSection({postId,userId}) {
     };
 
   return (
-    // <Button gradientDuoTone='purpleToBlue' outline className="self-center mt-5" onClick={handleBookmarkToggle}>
-    //         {isBookmarked ? 'Unbookmark' : 'Bookmark'}
-    // </Button>
     <div className='self-center mt-5 flex justify-between gap-2'>
         <button type='button' onClick={handleBookmarkToggle} className={`text-gray-400 hover:text-blue-500 ${currentUser&&isBookmarked&&'!text-blue-500'}`} >
             <BsBookmarksFill className="text-sm h-6 w-6"/>
