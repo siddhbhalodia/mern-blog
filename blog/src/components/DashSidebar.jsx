@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { signoutSuccess } from "../redux/user/userSlice"
+import { BsBookmarksFill } from "react-icons/bs";
 export default function DashSidebar() {
   const location = useLocation()
   const dispatch=useDispatch()
@@ -99,7 +100,7 @@ export default function DashSidebar() {
               <Link to='/dashboard?tab=bookmark'>
               <Sidebar.Item 
               active = {tab==='bookmark' || !tab}
-              icon={HiChartPie} 
+              icon={BsBookmarksFill} 
               labelColor='dark' 
               as='div'>
                 Bookmarks
