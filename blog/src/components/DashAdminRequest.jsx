@@ -22,7 +22,7 @@ export default function DashAdminRequest() {
       }
     }
     fetchAdminrequests();
-  },[])
+  },[adminrequestToDelete])
 
   const handleClick = async()=>{
     try{
@@ -64,9 +64,19 @@ export default function DashAdminRequest() {
                 <Table.Cell>{adminrequest.userId.username}</Table.Cell>
                 <Table.Cell>{adminrequest.userId._id}</Table.Cell>
                 <Table.Cell>
-                  <Button onClick={()=>{
-                    setAdminrequestToDelete(adminrequest.userId._id)
-                    handleClick()
+                  <Button onClick={async ()=>{
+                    try{
+                      console.log(adminrequestToDelete)
+                      const res = await fetch(`/api/adminstatus/deleteadminstatususer/${adminrequest.userId._id}`,{
+                        method : 'DELETE',
+                      })
+                      const data = await res.json()
+                      if(res.ok){
+                        setAdminrequestToDelete(adminrequest.userId._id)
+                      }
+                    } catch(error){
+                      console.log(error.message);
+                    }
                   }}>
                     Approve<AiOutlineCheck/>
                   </Button>  
