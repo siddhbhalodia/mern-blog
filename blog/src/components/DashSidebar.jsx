@@ -5,6 +5,8 @@ import { Link, useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { signoutSuccess } from "../redux/user/userSlice"
 import { BsBookmarksFill } from "react-icons/bs";
+import { AiFillClockCircle } from "react-icons/ai";
+
 export default function DashSidebar() {
   const location = useLocation()
   const dispatch=useDispatch()
@@ -104,6 +106,32 @@ export default function DashSidebar() {
               labelColor='dark' 
               as='div'>
                 Bookmarks
+              </Sidebar.Item>
+              </Link>
+            )
+          }
+          {currentUser.isAdmin && (
+            <>
+            <Link to='/dashboard?tab=adminrequest'>
+              <Sidebar.Item 
+              active ={tab==='adminrequest'}
+              icon={AiFillClockCircle}
+              as='div'
+              >
+                Admin Requests
+              </Sidebar.Item>
+            </Link>
+            </>
+          )}
+          { 
+            !currentUser.isAdmin && (
+              <Link to='/dashboard?tab=adminstatus'>
+              <Sidebar.Item 
+              active = {tab==='adminstatus' || !tab}
+              icon={AiFillClockCircle} 
+              labelColor='dark' 
+              as='div'>
+                Admin Status
               </Sidebar.Item>
               </Link>
             )

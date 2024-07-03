@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 import postRoutes from './routes/post.route.js'
 import commentRoutes from './routes/comment.route.js'
 import bookmarkRoutes from './routes/bookmark.route.js'
+import adminStatusRoutes from './routes/adminStatus.route.js'
 import path from 'path'
 
 dotenv.config();
@@ -32,6 +33,7 @@ app.use('/api/auth',authRoutes)
 app.use('/api/post',postRoutes) 
 app.use('/api/comment',commentRoutes)
 app.use('/api/bookmark',bookmarkRoutes)
+app.use('/api/adminstatus',adminStatusRoutes)
 
 app.use(express.static(path.join(__dirname,'/blog/dist')))
 

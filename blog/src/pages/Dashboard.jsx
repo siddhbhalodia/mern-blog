@@ -8,6 +8,8 @@ import DashComments from "../components/DashComments"
 import React from "react"
 import DashboardComp from "../components/DashboardComp"
 import DashBookmarks from "../components/DashBookmarks"
+import DashAdminStatus from "../components/DashAdminStatus"
+import DashAdminRequest from "../components/DashAdminRequest"
 
 export default function Dashboard() {
   const location = useLocation()
@@ -38,5 +40,9 @@ export default function Dashboard() {
         {tab==='dash' && <DashboardComp/>}
         {/* comments...  */}
         {tab==='bookmark' && <DashBookmarks/>}
+        {/* adminstatus...  */}
+        {tab==='adminstatus' && <DashAdminStatus />}
+        {/* adminrequest...  */}
+        {tab==='adminrequest' && <DashAdminRequest />}
     </div>
 }
