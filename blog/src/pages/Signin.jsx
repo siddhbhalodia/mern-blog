@@ -34,7 +34,7 @@ export default function SignIn() {
         navigate('/')
       }
     }catch(error){
-      dispatch(signInFailure(eroor.message));
+      dispatch(signInFailure(error.message));
     }
   }
   return (
@@ -46,10 +46,10 @@ export default function SignIn() {
             <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>Nebula</span>
             Blog
         </Link>
-        <p className='text-sm mt-5'>
+        <div className='text-sm mt-5'>
           <p>Sign-in/Sign-up to enjoy all features of bloging.</p> 
           <p>Where Words Dance and Ideas Take Flight: Explore the Tapestry of Thought!</p>
-        </p>
+        </div>
         </div>
         {/* right */}
         <div className='flex-1'>
@@ -91,6 +91,11 @@ export default function SignIn() {
             <span>Don't have an account?</span>
             <Link to='/sign-up' className="text-blue-500">
               Sign Up
+            </Link>
+          </div>
+          <div>
+            <Link to='/forgot-password' className="text-blue-500">
+              Forgot Password?
             </Link>
           </div>
           {

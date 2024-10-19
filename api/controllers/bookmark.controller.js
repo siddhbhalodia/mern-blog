@@ -45,7 +45,7 @@ export const getbookmarks = async (req, res, next) => {
 
 export const getBookmarkedPosts= async (req, res, next) => {
     try{
-        const bookmarks = await Bookmark.find({userId:req.params.userId}).sort({
+        const bookmarks = await Bookmark.find({userId:req.params.userId}).sort({   //it will return like {userId:...., postId: {_id:..., content:....,title:....,slug:...,userId:...,image:...}}
             createdAt:-1
         }).populate("postId")
         const posts = bookmarks.map(bookmark => bookmark.postId)

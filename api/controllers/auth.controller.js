@@ -2,7 +2,8 @@ import User from "../models/user.model.js";
 import bcryptjs from 'bcryptjs';
 import {errorHandler} from "../utils/error.js";
 import jwt from 'jsonwebtoken';
-
+import nodemailer from 'nodemailer';
+import { response } from "express";
 export const signup =async(req,res,next) =>{
     const { username ,email , password} =req.body;
 
@@ -10,7 +11,7 @@ export const signup =async(req,res,next) =>{
         next(errorHandler(400,'All Fields are required'));
     }
 
-    const hashedPassword = await bcryptjs.hashSync(password,10);
+    const hashedPassword = bcryptjs.hashSync(password,10);
 
     const newUser=new User({username,email,password:hashedPassword});
 
@@ -89,5 +90,70 @@ export const google = async (req,res,next)=>{
     }
     catch (error){
         next(error);
+    }
+}
+
+
+export const forgotPassword= async (req, res, next) => {
+    try {
+        const user = await User.findOne({ email: req.body.email });
+        if (!user) {
+            return next(errorHandler(404, "User not found"));
+        }
+        const resetToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const resetLink = `https://nebula-blog.onrender.com/reset-password/${resetToken}`;
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            secure:true,
+            port:465,
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.EMAIL_PASSWORD
+            }
+        });
+        const receiver = {
+            from: process.env.EMAIL,
+            to: user.email,
+            subject: 'Password Reset',
+            text: 'Reset your password using the following link: ',
+            html: `
+                    <p>Reset your password using the following link:</p>
+                    <a href="${resetLink}">Reset your password</a>
+                  `,
+        }
+        transporter.sendMail(receiver)
+            .then(() => {
+                res.status(200).json({ message: 'Password reset email sent' });
+            })
+            .catch((error) => {
+                next(error);
+            });
+    }
+
+    catch (error) {
+        next(error);
+    }
+}
+
+export const resetPassword = async (req, res, next) => {
+    try{
+        const {token} = req.params;
+        const { newPassword } = req.body;
+        const decoded_token = jwt.verify(token, process.env.JWT_SECRET);
+        const hashedPassword = bcryptjs.hashSync(newPassword,10);
+        const updatedUser = await User.findByIdAndUpdate(
+            decoded_token.id,
+            {
+                $set:{
+                    password:hashedPassword
+                }
+            },
+            {new:true}
+        );
+        const {password,...rest}= updatedUser._doc;
+        res.status(200).json(rest);
+    }
+    catch(error){
+        next(error)
     }
 }

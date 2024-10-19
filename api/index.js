@@ -9,7 +9,6 @@ import commentRoutes from './routes/comment.route.js'
 import bookmarkRoutes from './routes/bookmark.route.js'
 import adminStatusRoutes from './routes/adminStatus.route.js'
 import path from 'path'
-
 dotenv.config();
 
 mongoose.connect(process.env.MONGO).then(()=>{
